@@ -16,6 +16,118 @@
   Once you've implemented the logic, test your code by running
 */
 
-class Calculator {}
+class Calculator {
+  constructor() {
+    this.result = 0;
+  }
+
+  add(num) {
+    this.result += num;
+  }
+
+  subtract(num) {
+    this.result -= num;
+  }
+
+  multiply(num) {
+    this.result *= num;
+  }
+
+  divide(num) {
+    if (num === 0) {
+      throw new Error("Division by zero is not allowed!");
+    }
+    this.result /= num;
+  }
+
+  clear() {
+    this.result = 0;
+  }
+
+  getResult() {
+    return this.result;
+  }
+
+  // Helper function to perform operation on two numbers
+  // performOperation(num1, num2) {
+  //   const operator = stack.pop();
+  //   switch (operator) {
+  //     case "+":
+  //       return num1 + num2;
+  //     case "-":
+  //       return num1 - num2;
+  //     case "*":
+  //       return num1 * num2;
+  //     case "/":
+  //       return num1 / num2;
+  //     default:
+  //       throw new Error("Invalid operator!");
+  //   }
+  // }
+
+  // calculate(expression) {
+  //   // Remove any continuous spaces
+  //   expression = expression.replace(/\s+/g, "");
+
+  //   // Validate expression - only allow numbers, operators (+, -, *, /), parentheses
+  //   const validChars = /[0-9+\-*\/()]/;
+  //   if (!validChars.test(expression)) {
+  //     throw new Error("Invalid expression format!");
+  //   }
+
+  //   // Use a stack to handle parentheses
+  //   const stack = [];
+  //   let currentNumber = "";
+
+  //   // Loop through each character in the expression
+  //   for (const char of expression) {
+  //     if (char.match(/\d/)) {
+  //       currentNumber += char;
+  //     } else if (char === ".") {
+  //       // Allow only one decimal point
+  //       if (!currentNumber.includes(".")) {
+  //         currentNumber += char;
+  //       }
+  //     } else if (char === "(") {
+  //       stack.push(Number(currentNumber));
+  //       currentNumber = "";
+  //       stack.push(char);
+  //     } else if (char === ")") {
+  //       while (stack[stack.length - 1] !== "(") {
+  //         currentNumber = performOperation(currentNumber, stack.pop());
+  //       }
+  //       stack.pop(); // Remove the opening parenthesis
+  //       currentNumber = performOperation(stack.pop(), currentNumber); // Apply result to previous number
+  //     } else if (chat === " "){
+  //       continue
+  //     } else { // Operator (+, -, *, /)
+  //       stack.push(Number(currentNumber));
+  //       stack.push(char);
+  //       currentNumber = "";
+  //     }
+  //   }
+
+  //   // Evaluate remaining numbers and operators
+  //   while (stack.length > 1) {
+  //     currentNumber = performOperation(currentNumber, stack.pop());
+  //   }
+
+  //   // Set result and return
+  //   this.result = Number(currentNumber);
+  //   return this.result;
+  // }
+
+  calculate(data) {
+    data = data.replace(/\s+/g, "");
+
+    const result = eval(data);
+
+    if (isNaN(result) || !isFinite(result)) {
+      throw Error("Invalid expression");
+    }
+    this.result = result;
+  }
+
+}
 
 module.exports = Calculator;
